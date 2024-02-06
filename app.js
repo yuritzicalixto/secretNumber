@@ -23,9 +23,9 @@ function verificarIntento(){
 
     } else {
         if(numeroDeUsuario > numeroSecreto){
-            asignarTextoElemento('p', 'Numero secreto es menor');
+            asignarTextoElemento('p', 'Número secreto es menor');
         } else{
-            asignarTextoElemento('p', 'El numero secreto es mayor');
+            asignarTextoElemento('p', 'El número secreto es mayor');
         }
         intentos++;
         //Llamamos a la función cuando el user no acierta para limpiar caja
@@ -69,8 +69,8 @@ function generarNumeroSecreto(){
 }
 
 function condicionesIniciales(){
-    asignarTextoElemento( 'h1' , "Juego del numero secreto");
-    asignarTextoElemento( 'p' , `Indica un numero del 1 al ${numeroMaximo}`);
+    asignarTextoElemento( 'h1' , "Juego del número secreto");
+    asignarTextoElemento( 'p' , `Indica un número del 1 al ${numeroMaximo}`);
     numeroSecreto = generarNumeroSecreto();
     console.log(numeroSecreto);
     intentos=1;
