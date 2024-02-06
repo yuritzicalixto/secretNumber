@@ -1,7 +1,8 @@
 //Declarar variables
 let numeroSecreto = 0;
 let intentos = 0;
-
+let listaNumerosSorteados= [];
+let numeroMaximo= 10;
 
 
 function asignarTextoElemento(elemento, texto){
@@ -13,7 +14,7 @@ function asignarTextoElemento(elemento, texto){
 
 function verificarIntento(){
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
-    // console.log(numeroSecreto);
+     console.log(numeroSecreto);
 //El usuario no acerto
     if(numeroDeUsuario === numeroSecreto){
         asignarTextoElemento ('p', `Acertaste el número en ${intentos} ${(intentos === 1) ? 'vez' : 'veces'}`);
@@ -47,12 +48,29 @@ function limpiarCaja(){
 //Generará un número aletorio
 function generarNumeroSecreto(){
     // let numeroSecreto = Math.floor(Math.random()*10)+1;
-    return Math.floor(Math.random()*10)+1;
+    let numeroGenerado = Math.floor(Math.random()*numeroMaximo)+1;
+    //Mostrar el numero generado
+    console.log(numeroGenerado)
+    //Como va creciendo la lista
+    console.log(listaNumerosSorteados)
+    //si ya sorteamos todos los numeros, hacemos esto
+    if(listaNumerosSorteados.length == numeroMaximo){
+        asignarTextoElemento('p', 'Ya se sortearon todos los números posibles');
+    } //Si no, seguimos jugando 
+    else {
+    //Si el numeroGenerado esta incluida en la lista, hago algo sino sigo comportandome igual
+        if(listaNumerosSorteados.includes(numeroGenerado)){
+        return generarNumeroSecreto();
+        } else{
+        listaNumerosSorteados.push(numeroGenerado);
+        return numeroGenerado;
+        }
+    }
 }
 
 function condicionesIniciales(){
     asignarTextoElemento( 'h1' , "Juego del numero secreto");
-    asignarTextoElemento( 'p' , "Indica un numero del 1 al 10");
+    asignarTextoElemento( 'p' , `Indica un numero del 1 al ${numeroMaximo}`);
     numeroSecreto = generarNumeroSecreto();
     console.log(numeroSecreto);
     intentos=1;
